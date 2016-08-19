@@ -101,6 +101,11 @@ namespace IcsManagerLibrary
                     where GetProperties(c).Name == name
                     select c).DefaultIfEmpty(null).First();
         }
-
+        public static INetConnection GetConnectionByPartialDevName(string devName)
+        {
+            return (from INetConnection c in GetAllConnections()
+                    where GetProperties(c).DeviceName.Contains(devName)
+                    select c).DefaultIfEmpty(null).First();
+        }
     }
 }
